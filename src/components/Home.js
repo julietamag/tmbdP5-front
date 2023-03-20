@@ -51,7 +51,7 @@ export const Home = () => {
   return (
     <>
       <div
-        className="p-5 text-center bg-image object-fit-cover min-vh-100"
+        className="p-5 text-center bg-image object-fit-cover"
         style={{
           backgroundImage:
             " url(https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
