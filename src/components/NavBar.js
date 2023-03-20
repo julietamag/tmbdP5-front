@@ -32,7 +32,7 @@ export const NavBar = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
       <div className="container-fluid">
         <div className="navbar-header">
           <Link to="/" class="navbar-brand">
