@@ -19,7 +19,7 @@ export const Profile = () => {
   useEffect(() => {
     axios
       .get(
-        `https://tmbd-p5-front.vercel.app/api/user/profile/${id}`,
+        `https://localhost:3001/api/user/profile/${id}`,
         {},
 
         {
@@ -73,7 +73,7 @@ export const Profile = () => {
     if (newPhotoUrl) {
       axios
         .put(
-          `https://tmbd-p5-front.vercel.app/api/user/imageChange/${id}`,
+          `https://localhost:3001/api/user/imageChange/${id}`,
           { photo_url: newPhotoUrl },
           {
             withCredentials: true,

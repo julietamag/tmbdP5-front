@@ -16,7 +16,7 @@ export const Login = () => {
     e.preventDefault();
     //LOGIN USER
     axios
-      .post("https://tmbd-p5-front.vercel.app/api/user/login",{
+      .post("https://localhost:3001/api/user/login",{
         email: email.value,
         password: password.value,
       }, {
