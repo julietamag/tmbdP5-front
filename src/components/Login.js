@@ -16,7 +16,7 @@ export const Login = () => {
     e.preventDefault();
     //LOGIN USER
     axios
-      .post("https://localhost:3001/api/user/login",{
+      .post("http://localhost:3001/api/user/login",{
         email: email.value,
         password: password.value,
       }, {

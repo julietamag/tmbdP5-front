@@ -21,7 +21,7 @@ export const ListItem = ({ result }) => {
     dispatch(addFavorite([result.id, type]));
     axios
       .post(
-        `https://localhost:3001/api/user/${user.id}/favorites/${result.id}`,
+        `http://localhost:3001/api/user/${user.id}/favorites/${result.id}`,
         {
           type: type,
         },
@@ -37,7 +37,7 @@ export const ListItem = ({ result }) => {
   function handleRemoveFavorite() {
     axios
       .delete(
-        `https://localhost:3001/api/user/${user.id}/favorites/${result.id}`,
+        `http://localhost:3001/api/user/${user.id}/favorites/${result.id}`,
         {
           favorites_Show: result.id,
           favorites_Movie: result.id,

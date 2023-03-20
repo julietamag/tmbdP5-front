@@ -18,7 +18,7 @@ export const UserOverview = ({ type }) => {
   useEffect(() => {
     axios
       .get(
-        `https://localhost:3001/api/user/profile/${id}`,
+        `http://localhost:3001/api/user/profile/${id}`,
         {},
         {
           withCredentials: true, //AxiosRequestConfig parameter

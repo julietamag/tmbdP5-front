@@ -20,7 +20,7 @@ export const Register = () => {
     e.preventDefault();
     //REGISTER NEW USER
     axios
-      .post("https://localhost:3001/api/user/register", {
+      .post("http://localhost:3001/api/user/register", {
         email: email.value,
         password: password.value,
         name: name.value,

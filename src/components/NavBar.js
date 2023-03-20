@@ -14,13 +14,13 @@ export const NavBar = () => {
   function handleLogout(e) {
     e.preventDefault();
     axios
-      .post("https://localhost:3001/api/user/logout", {
+      .post("http://localhost:3001/api/user/logout", {
         //AxiosRequestConfig parameter
         withCredentials: true, //correct
       })
       .then(() => {
         document.cookie =
-          "token=;expires=Thu, 01 Jan 1970 00:00:00 UTC;domain=https://localhost:3001/;path=/;";
+          "token=;expires=Thu, 01 Jan 1970 00:00:00 UTC;domain=http://localhost:3001/;path=/;";
         dispatch(logoutUser());
         localStorage.clear();
         navigate("/");
