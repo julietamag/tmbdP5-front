@@ -89,7 +89,7 @@ export const Profile = () => {
   }
 
   return (
-    <div className="justify-content-center d-flex  w-100">
+    <div className="justify-content-center d-flex  w-100 min-vh-100">
       <div className="card mb-3 w-75">
         <div className="row g-0 ">
           <div className="col-md-4">

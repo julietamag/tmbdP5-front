@@ -6,7 +6,7 @@ export const SearchResults = () => {
   const results = useSelector((state) => state.search.results);
 
   return (
-    <div className="container">
+    <div className="container min-vh-100">
       {results.length ? (
         <List results={results} />
       ) : (

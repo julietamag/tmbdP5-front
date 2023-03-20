@@ -58,7 +58,7 @@ export const Overview = () => {
   return (
     <>
       {type === "movie" ? (
-        <div className="container my-5">
+        <div className="container my-5 min-vh-100">
           <div className="row">
             <div className="col-md-4">
               <img
@@ -114,7 +114,7 @@ export const Overview = () => {
           </div>
         </div>
       ) : (
-        <div className="container my-5">
+        <div className="container my-5 min-vh-100">
           <div className="row">
             <div className="col-md-4">
               <img

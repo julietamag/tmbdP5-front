@@ -45,7 +45,7 @@ export const Register = () => {
   }
 
   return (
-    <div className="container my-5">
+    <div className="container my-5 min-vh-100">
       <h1 className="text-center mb-4">Register</h1>
       {alertMessage && (
         <div className="alert alert-success" role="alert">

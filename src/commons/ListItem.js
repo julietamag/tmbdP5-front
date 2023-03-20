@@ -56,7 +56,7 @@ export const ListItem = ({ result }) => {
     <ListGroup.Item>
       {result.email ? (
         <Card>
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center min-vh-100">
             <Card.Img
               variant="left"
               src={result.photo_url}
@@ -77,7 +77,7 @@ export const ListItem = ({ result }) => {
         </Card>
       ) : (
         <Card>
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center min-vh-100">
             <Card.Img
               variant="left"
               src={`https://image.tmdb.org/t/p/original/${result.poster_path}`}

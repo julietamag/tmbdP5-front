@@ -68,7 +68,7 @@ export const UserOverview = ({ type }) => {
   }, [singleSelection.favorites_Movie, singleSelection.favorites_Show]);
 
   return (
-    <div className="container w-100 my-5  ">
+    <div className="container w-100 my-5  min-vh-100">
       <div className="row">
         <div className="col-md-4">
           <Avatar size={64} icon={<UserOutlined />} />
