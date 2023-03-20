@@ -20,7 +20,7 @@ export const Register = () => {
     e.preventDefault();
     //REGISTER NEW USER
     axios
-      .post("https://tmbd-p5-front-3widubzvv-julietamag.vercel.app/api/user/register", {
+      .post("https://tmbd-p5-front.vercel.app/api/user/register", {
         email: email.value,
         password: password.value,
         name: name.value,

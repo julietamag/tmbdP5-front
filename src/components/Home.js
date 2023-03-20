@@ -37,7 +37,7 @@ export const Home = () => {
     }
     if (type === "user") {
       axios
-        .get(`https://tmbd-p5-front-3widubzvv-julietamag.vercel.app/api/user/search?query=${search.value}`)
+        .get(`https://tmbd-p5-front.vercel.app/api/user/search?query=${search.value}`)
         .then((result) => {
          dispatch(setResults(result.data));
          navigate("/search");

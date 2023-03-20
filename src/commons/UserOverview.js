@@ -18,7 +18,7 @@ export const UserOverview = ({ type }) => {
   useEffect(() => {
     axios
       .get(
-        `https://tmbd-p5-front-3widubzvv-julietamag.vercel.app/api/user/profile/${id}`,
+        `https://tmbd-p5-front.vercel.app/api/user/profile/${id}`,
         {},
         {
           withCredentials: true, //AxiosRequestConfig parameter
