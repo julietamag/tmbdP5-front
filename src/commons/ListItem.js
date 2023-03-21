@@ -21,7 +21,7 @@ export const ListItem = ({ result }) => {
     dispatch(addFavorite([result.id, type]));
     axios
       .post(
-        `http://localhost:3001/api/user/${user.id}/favorites/${result.id}`,
+        `https://tmbd-p5-front.vercel.app/api/user/${user.id}/favorites/${result.id}`,
         {
           type: type,
         },
@@ -37,7 +37,7 @@ export const ListItem = ({ result }) => {
   function handleRemoveFavorite() {
     axios
       .delete(
-        `http://localhost:3001/api/user/${user.id}/favorites/${result.id}`,
+        `https://tmbd-p5-front.vercel.app/api/user/${user.id}/favorites/${result.id}`,
         {
           favorites_Show: result.id,
           favorites_Movie: result.id,
