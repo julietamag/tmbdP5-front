@@ -43,7 +43,7 @@ export const Overview = () => {
     dispatch(addFavorite([singleSelection.id, type]));
     axios
       .post(
-        `https://tmbd-p5-front.vercel.app/api/user/${user.id}/favorites/${singleSelection.id}`,
+        `http://localhost:3001/api/user/${user.id}/favorites/${singleSelection.id}`,
         {
           type: type
         },
