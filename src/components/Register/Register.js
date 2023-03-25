@@ -19,7 +19,7 @@ export const Register = () => {
     e.preventDefault();
     //REGISTER NEW USER
     axios
-      .post("http://localhost:3001/api/user/register", {
+      .post("https://tmdb-yax5.onrender.com/api/user/register", {
         email: email.value,
         password: password.value,
         name: name.value,

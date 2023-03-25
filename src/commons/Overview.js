@@ -39,7 +39,7 @@ export const Overview = () => {
     dispatch(addFavorite([singleSelection.id, type]));
     axios
       .post(
-        `http://localhost:3001/api/user/${user.id}/favorites/${singleSelection.id}`,
+        `https://tmdb-yax5.onrender.com/api/user/${user.id}/favorites/${singleSelection.id}`,
         {
           type: type
         },

@@ -14,7 +14,7 @@ export const NavBar = () => {
   function handleLogout(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/api/user/logout", {
+      .post("https://tmdb-yax5.onrender.com/api/user/logout", {
         //AxiosRequestConfig parameter
         withCredentials: true, //correct
       })

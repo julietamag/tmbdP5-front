@@ -18,7 +18,7 @@ export const Login = () => {
     //LOGIN USER
     axios
       .post(
-        "http://localhost:3001/api/user/login",
+        "https://tmdb-yax5.onrender.com/api/user/login",
         {
           email: email.value,
           password: password.value,

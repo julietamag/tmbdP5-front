@@ -19,7 +19,7 @@ export const UserOverview = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:3001/api/user/profile/${id}`,
+        `https://tmdb-yax5.onrender.com/api/user/profile/${id}`,
         {},
         {
           withCredentials: true, //AxiosRequestConfig parameter

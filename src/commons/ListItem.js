@@ -21,7 +21,7 @@ export const ListItem = ({ result, type }) => {
     dispatch(addFavorite(result));
     axios
       .post(
-        `http://localhost:3001/api/user/${user.id}/favorites/${result.id}`,
+        `https://tmdb-yax5.onrender.com/api/user/${user.id}/favorites/${result.id}`,
         {
           type: type,
         },
@@ -37,7 +37,7 @@ export const ListItem = ({ result, type }) => {
   function handleRemoveFavorite() {
     axios
       .delete(
-        `http://localhost:3001/api/user/${user.id}/favorites/${result.id}`,
+        `https://tmdb-yax5.onrender.com/api/user/${user.id}/favorites/${result.id}`,
         {
           favorites_Show: result.id,
           favorites_Movie: result.id,

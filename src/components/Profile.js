@@ -20,7 +20,7 @@ export const Profile = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:3001/api/user/profile/${id}`,
+        `https://tmdb-yax5.onrender.com/api/user/profile/${id}`,
         {},
 
         {
@@ -74,7 +74,7 @@ export const Profile = () => {
     if (newPhotoUrl) {
       axios
         .put(
-          `http://localhost:3001/api/user/imageChange/${id}`,
+          `https://tmdb-yax5.onrender.com/api/user/imageChange/${id}`,
           { photo_url: newPhotoUrl },
           {
             withCredentials: true,
