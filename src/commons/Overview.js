@@ -12,19 +12,15 @@ export const Overview = () => {
   const navigate = useNavigate()
   const [singleSelection, setSingleSelection] = useState({});
   const user = useSelector((state) => state.user.user);
-  const results = useSelector((state) => state.search.results);
+
 
   let type;
 
   const { id } = useParams();
   const {media} = useParams();
 
-  if (results.length) {
-    type = results[0].first_air_date ? "tv" : "movie";
-  } else {
-    type = media
-  }
 
+    type = media
 
 
   useEffect(() => {
@@ -57,8 +53,18 @@ export const Overview = () => {
 
   return (
     <>
-      {type === "movie" ? (
-        <div className="container my-5 min-vh-100">
+        <div
+         className="p-5 text-left bg-image object-fit-cover "
+         style={{
+           backgroundImage:
+           `url(https://image.tmdb.org/t/p/original/${singleSelection.backdrop_path})`,
+           height: '100vh',
+           backgroundRepeat: "no-repeat",
+           backgroundSize: "100%",
+          }}
+       >
+          <div className="mask " style={{ backgroundColor: "rgba(0, 0, 0, 0.9)" }}>
+        <div className="container my-5 ">
           <div className="row">
             <div className="col-md-4">
               <img
@@ -68,18 +74,12 @@ export const Overview = () => {
               />
             </div>
             <div className="col-md-8">
-              <h1 className="mb-4">{singleSelection.title}</h1>
-              <p className="lead">{singleSelection.overview}</p>
-              <p>
-                <strong>Director:</strong> Director Name
+              <h1 className="mb-4 mt-3 text-light">{type === "movie" ? singleSelection.title : singleSelection.name}</h1>
+              <p className="lead text-light">{singleSelection.overview}</p>
+              <p className="text-light">
+                <strong>Release Date:</strong> {type === "movie" ? singleSelection.release_date : singleSelection.first_air_date}
               </p>
-              <p>
-                <strong>Cast:</strong> Cast Names
-              </p>
-              <p>
-                <strong>Release Date:</strong> {singleSelection.release_date}
-              </p>
-              <p>
+              <p className="text-light">
                 <strong>Genre:</strong>
 
                 {singleSelection.genres &&
@@ -92,14 +92,19 @@ export const Overview = () => {
                   })}
               </p>
 
-              <p>
-                <strong>Rating:</strong> {singleSelection.vote_average}
-              </p>
-              <p>
+              <p className="text-light">
+                <strong>User Score:</strong> {`${Math.round(singleSelection.vote_average * 10)} %`}
+              </p>{
+                type === "movie" ? (
+              <p className="text-light">
                 <strong>Duration:</strong> {`${singleSelection.runtime}min`}
-              </p>
+              </p>) : 
+               <p className="text-light">
+               <strong>Seasons:</strong> {singleSelection.number_of_seasons}
+             </p>
+              }
               <button
-                className="btn btn-outline-primary btn-sm"
+                className="btn btn-outline-warning btn-sm"
                 onClick={() =>
                   user ? (
                     handleFavorite()
@@ -113,61 +118,8 @@ export const Overview = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <div className="container my-5 min-vh-100">
-          <div className="row">
-            <div className="col-md-4">
-              <img
-                src={`https://image.tmdb.org/t/p/original/${singleSelection.poster_path}`}
-                alt="Movie Poster"
-                className="img-fluid"
-              />
-            </div>
-            <div className="col-md-8">
-              <h1 className="mb-4">{singleSelection.name}</h1>
-              <p className="lead">Movie Plot</p>
-              <p>
-                <strong>Director:</strong> Director Name
-              </p>
-              <p>
-                <strong>Cast:</strong> Cast Names
-              </p>
-              <p>
-                <strong>Release Date:</strong> {singleSelection.first_air_date}
-              </p>
-              <p>
-                <strong>Genre:</strong>
-                {singleSelection.genres &&
-                  singleSelection.genres.map((genre, index, array) => {
-                    if (index === array.length - 1) {
-                      return ` ${genre.name}`;
-                    } else {
-                      return ` ${genre.name},`;
-                    }
-                  })}
-              </p>
-              <p>
-                <strong>Seasons:</strong> {singleSelection.number_of_seasons}
-              </p>
-              <p>
-                <strong>Rating:</strong> {`${singleSelection.vote_average} %`}
-              </p>
-              <button
-                className="btn btn-outline-primary btn-sm"
-                onClick={() =>
-                  user ? (
-                    handleFavorite()
-                  ) : (
-                    <p>you need to log in to add favorites</p>
-                  )
-                }
-              >
-                <FaStar /> Favorite
-              </button>
-            </div>
-          </div>
         </div>
-      )}
+        </div>
     </>
   );
 };

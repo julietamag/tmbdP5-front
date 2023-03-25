@@ -7,18 +7,18 @@ import { addFavorite, removeFavorite } from "../store/user";
 import axios from "axios";
 import { message } from "antd";
 
-export const ListItem = ({ result }) => {
+export const ListItem = ({ result, type }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   let location = useLocation();
-  let type;
+  // let type;
 
-  type = result.first_air_date ? "tv" : "movie";
-
+  // type = result.first_air_date ? "tv" : "movie";
+  console.log(type);
   //ADD TO FAVORITES
   function handleFavorite() {
-    dispatch(addFavorite([result.id, type]));
+    dispatch(addFavorite(result));
     axios
       .post(
         `http://localhost:3001/api/user/${user.id}/favorites/${result.id}`,
@@ -29,8 +29,8 @@ export const ListItem = ({ result }) => {
           withCredentials: true, //AxiosRequestConfig parameter
         }
       )
-      .then((res) => res)
-      .catch(() => navigate('/404'));
+      .then(() => message.success("Item added to Favorites"))
+      .catch(() => navigate("/404"));
   }
 
   //REMOVE FROM FAVORITES
@@ -48,65 +48,68 @@ export const ListItem = ({ result }) => {
       )
       .then(() => {
         dispatch(removeFavorite(result.id));
+        message.success("Item removed from Favorites");
       })
-      .catch(() => navigate('/404'));
+      .catch(() => navigate("/404"));
   }
 
   return (
-    <ListGroup.Item>
+    <ListGroup.Item style={{backgroundColor:'black'}}>
       {result.email ? (
-        <Card>
-          <div className="d-flex align-items-center min-vh-100">
+        <Card >
+          <div className="d-flex align-items-center p-2">
             <Card.Img
               variant="left"
               src={result.photo_url}
               style={{ maxWidth: "100px" }}
             />
-            <div className="ml-3">
-              <Card.Title>{result.fullName}</Card.Title>
-
-              <Card.Text>{result.email}</Card.Text>
+            <div >
+              <Card.Title style={{marginLeft: '2rem'}}>{result.fullName}</Card.Title>
+              <Card.Text style={{marginLeft: '2rem'}}>{result.email}</Card.Text>
               <Button
-                variant="primary"
+                variant="dark"
+                style={{marginLeft: '2rem'}}
                 onClick={() => navigate(`/overview/users/${result.id}`)}
               >
-                View More
+               <i class="fa fa-plus" aria-hidden="true"></i>
               </Button>
             </div>
           </div>
         </Card>
       ) : (
         <Card>
-          <div className="d-flex align-items-center min-vh-100">
+          <div className="d-flex align-items-center">
             <Card.Img
               variant="left"
               src={`https://image.tmdb.org/t/p/original/${result.poster_path}`}
               style={{ maxWidth: "100px" }}
             />
-            <div className="ml-3">
-              <Card.Title>{result.title}</Card.Title>
-
+            <div className="m-4">
+              <Card.Title>{result.title || result.name}</Card.Title>
               <Card.Text>
                 {result.overview
                   ? result.overview || result.known_for.overview
                   : "no descprition given"}
               </Card.Text>
               <Button
-                variant="primary"
-                onClick={() => navigate(`/overview/media/${result.id}`)}
+                variant="dark"
+                className="mx-2"
+                onClick={() => navigate(`/overview/${type}/${result.id}`)}
               >
-                View More
-              </Button>
+                <i class="fa fa-plus" aria-hidden="true"></i>
+              </Button>{" "}
               {location.pathname.slice(0, -2) === "/user/profile" ? (
-                <button
-                  className="btn btn-outline-danger btn-sm"
+                <Button
+                  variant="danger"
+                  className="mx-2"
                   onClick={() => handleRemoveFavorite()}
                 >
-                  Remove
-                </button>
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </Button>
               ) : (
-                <button
-                  className="btn btn-outline-primary btn-sm"
+                <Button
+                  variant="warning"
+                  className="ml-2"
                   onClick={() =>
                     user
                       ? handleFavorite()
@@ -116,7 +119,7 @@ export const ListItem = ({ result }) => {
                   }
                 >
                   <FaStar /> Favorite
-                </button>
+                </Button>
               )}
             </div>
           </div>

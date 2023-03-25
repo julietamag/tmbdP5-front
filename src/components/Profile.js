@@ -6,6 +6,7 @@ import axios from "axios";
 import api_key from "../utils/apiKey";
 import { setUserDetails } from "../store/user";
 import { List } from "../commons/List";
+import bgImg from '.././assets/pexels-pavel-danilyuk-7234214.jpg'
 
 export const Profile = () => {
   const user = useSelector((state) => state.user.user);
@@ -89,22 +90,29 @@ export const Profile = () => {
   }
 
   return (
-    <div className="justify-content-center d-flex  w-100 min-vh-100">
-      <div className="card mb-3 w-75">
+    <div className="justify-content-center d-flex min-vh-100 w-100"  style={{
+      backgroundImage: `url(${bgImg})`,
+      backgroundSize: "100%",
+     }}>
+      <div className="card m-3 w-75 h-75">
         <div className="row g-0 ">
           <div className="col-md-4">
+            <div className="container mt-3 d-flex flex-column justify-content-center align-items-center">
             <img
               src={user.photo_url}
-              className="img-fluid rounded-start"
+              className="img-thumbnail"
               alt="profile"
-              height={400}
+              style={{height: 300,
+                width: 300,
+                objectFit: 'cover'}}
             />
             <button
-              className="btn btn-outline-dark btn-l mt-3 ml-2"
+              className="btn btn-outline-dark btn-l mt-3 ml-2 w-100"
               onClick={handleImageChange}
             >
               Change Profile Picture <ImImages />
             </button>
+            </div>
           </div>
           <div className="col-md-8">
             <div className="card-body">
@@ -116,16 +124,16 @@ export const Profile = () => {
                 {user.email}
               </p>
               <div>
-                <h2>Favorites</h2>
-                <h4>Movies</h4>
+                <h2 style={{width: '100%', backgroundColor: 'black', color: 'white', borderRadius: '1rem', padding: '.5rem 1rem'}}>Favorites</h2>
+                <h4 style={{width: '80%', backgroundColor: 'white', color: 'black', border: '1px solid black', borderRadius: '1rem', padding: '0 1rem'}}>Movies</h4>
                 {movieData && movieData.length > 0 ? (
-                  <List results={movieData} />
+                  <List results={movieData} type='movie' />
                 ) : (
                   <p>You have no favorite movies yet.</p>
                 )}
-                <h4>Shows</h4>
+                <h4 style={{width: '80%', backgroundColor: 'white', color: 'black', border: '1px solid black', borderRadius: '1rem', padding: '0 1rem', marginTop: '.5rem'}}>Shows</h4>
                 {showData && showData.length > 0 ? (
-                  <List results={showData} />
+                  <List results={showData} type='tv' />
                 ) : (
                   <p>You have no favorite shows yet.</p>
                 )}

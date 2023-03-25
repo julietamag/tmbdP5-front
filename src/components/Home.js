@@ -7,6 +7,7 @@ import { Form, Button } from "react-bootstrap";
 import { setResults} from "../store/search";
 import { useDispatch } from "react-redux";
 import { CarouselView } from "./CarouselView";
+import bgImage from '../assets/pexels-david-bartus-714926.jpg'
 
 
 export const Home = () => {
@@ -29,7 +30,7 @@ export const Home = () => {
         )
         .then((result) => {
           dispatch(setResults(result.data.results));
-          navigate(`/search`);
+          navigate(`/search/${type}`);
         })
         .catch(() => {
           navigate('/404');
@@ -40,7 +41,7 @@ export const Home = () => {
         .get(`http://localhost:3001/api/user/search?query=${search.value}`)
         .then((result) => {
          dispatch(setResults(result.data));
-         navigate("/search");
+         navigate("/search/users");
         })
         .catch(() => {
           navigate('/404')
@@ -51,10 +52,10 @@ export const Home = () => {
   return (
     <>
       <div
-        className="p-5 text-center bg-image object-fit-cover"
+        className="p-5 text-center bg-image object-fit-cover "
         style={{
           backgroundImage:
-            " url(https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
+            `url(${bgImage})`,
           height: 400,
           backgroundRepeat: "no-repeat",
           backgroundSize: "100%",
@@ -103,7 +104,7 @@ export const Home = () => {
                     onChange={search.onChange}
                   />
                 </Form.Group>
-                <Button className="my-3" type="submit">Search</Button>
+                <button className="button-17 my-3" type="submit">Search</button>
               </Form>
             </div>
           </div>

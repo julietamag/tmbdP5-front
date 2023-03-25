@@ -20,7 +20,7 @@ export const NavBar = () => {
       })
       .then(() => {
         document.cookie =
-          "token=;expires=Thu, 01 Jan 1970 00:00:00 UTC;domain=http://localhost:3001/;path=/;";
+          "token=;expires=Thu, 01 Jan 1970 00:00:00 UTC;domain=localhost;path=/;";
         dispatch(logoutUser());
         localStorage.clear();
         navigate("/");
@@ -32,7 +32,7 @@ export const NavBar = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <div className="navbar-header">
           <Link to="/" class="navbar-brand">
@@ -43,13 +43,13 @@ export const NavBar = () => {
           <li className="nav-item">
             {user.email ? (
               <Link to={`/user/profile/${user.id}`}>
-                <button className="btn btn-warning my-2 my-sm-0 mx-3  ">
+                <button className="btn btn-light my-2 my-sm-0 mx-3  ">
                   PROFILE
                 </button>
               </Link>
             ) : (
               <Link to="user/register">
-                <button className="btn btn-outline-warning mx-3 my-2 my-sm-0 ">
+                <button className="btn btn-outline-light mx-3 my-2 my-sm-0 ">
                   REGISTER
                 </button>
               </Link>
@@ -66,7 +66,7 @@ export const NavBar = () => {
                   LOGOUT
                 </button>
               ) : (
-                <button className="btn btn-warning my-2 my-sm-0 ">
+                <button className="btn btn-light my-2 my-sm-0 ">
                   LOGIN
                 </button>
               )}
