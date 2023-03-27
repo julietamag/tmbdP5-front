@@ -56,8 +56,8 @@ export const Home = () => {
         style={{
           backgroundImage:
             `url(${bgImage})`,
-          height: 400,
-          backgroundRepeat: "no-repeat",
+          minHeight: 400,
+         
           backgroundSize: "100%",
         }}
       >

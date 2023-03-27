@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../store/user";
@@ -10,6 +10,8 @@ export const NavBar = () => {
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
   // LOGOUT
   function handleLogout(e) {
     e.preventDefault();
@@ -32,48 +34,51 @@ export const NavBar = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
       <div className="container-fluid">
-        <div className="navbar-header">
-          <Link to="/" class="navbar-brand">
+        <Link to="/" className="navbar-brand">
           <MdSubscriptions /> TMBD
-          </Link>
-        </div>
-        <ul className=" navbar-nav mr-sm-2">
-          <li className="nav-item">
-            {user.email ? (
-              <Link to={`/user/profile/${user.id}`}>
-                <button className="btn btn-light my-2 my-sm-0 mx-3  ">
-                  PROFILE
-                </button>
-              </Link>
-            ) : (
-              <Link to="user/register">
-                <button className="btn btn-outline-light mx-3 my-2 my-sm-0 ">
-                  REGISTER
-                </button>
-              </Link>
-            )}
-          </li>
-          <li className="nav-item">
-            {" "}
-            <Link to="user/login">
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          onClick={toggle}
+          aria-controls="navbarNav"
+          aria-expanded={isOpen}
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className={`collapse navbar-collapse ${isOpen && "show"} `} id="navbarNav">
+          <ul className="navbar-nav ml-auto d-inline-flex justify-content-end align-items-end w-100 m-2">
+            <li className="nav-item mx-3">
               {user.email ? (
-                <button
-                  className="btn btn-outline-danger my-2 my-sm-0"
-                  onClick={handleLogout}
-                >
-                  LOGOUT
-                </button>
+                <Link to={`/user/profile/${user.id}`}>
+                  <button className="btn btn-light ">PROFILE</button>
+                </Link>
               ) : (
-                <button className="btn btn-light my-2 my-sm-0 ">
-                  LOGIN
-                </button>
+                <Link to="user/register">
+                  <button className="btn btn-outline-light ">REGISTER</button>
+                </Link>
               )}
-            </Link>
-          </li>
-        </ul>
+            </li>
+            <li className="nav-item mx-3">
+              <Link to="user/login ">
+                {user.email ? (
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={handleLogout}
+                  >
+                    LOGOUT
+                  </button>
+                ) : (
+                  <button className="btn btn-light">LOGIN</button>
+                )}
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );
-};
+}
